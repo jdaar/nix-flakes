@@ -21,11 +21,16 @@
 					})
         ];
         shellHook = ''
-          echo "aider environment"
+          echo "Aider environment"
+          echo "Make sure that .venv has been initialized in the flake directory"
 					if [[ -d "./.venv" ]]; then
+						echo "Loading venv"
 						source ./.venv/bin/activate
 						export AIDER_MODEL=o3-mini
 						export AIDER_OPENAI_API_KEY=GETYOUROWNKEY
+					fi	
+					if [[ ! -d "./.venv" ]]; then
+						echo "Couldn't load venv"
 					fi	
         '';
       };
